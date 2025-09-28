@@ -1,12 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
 ---
 
 <Layout title="home">
+    <Navbar />
     <div class="me-section">
         <h3 class="intro-text">Hello I'm</h3>
         <h1 class="me-title">Wogcas</h1>
         <h1 class="me-role">Full-Stack Web Developer</h1>
+    </div>
+
+    <!-- TEST -->
+    <div class="content-sections">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>This is the about section...</p>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            <p>This is the experience section...</p>
+        </section>
+
+        <section id="portfolio" class="section">
+            <h2>Portfolio</h2>
+            <p>This is the portfolio section...</p>
+        </section>
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <p>This is the education section...</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>This is the contact section...</p>
+        </section>
     </div>
 </Layout>
 
@@ -16,8 +46,9 @@ import Layout from "../layouts/Layout.astro";
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 80vh;
+        min-height: 100vh;
         text-align: center;
+        padding-top: 80px; 
     }
 
     .intro-text,
@@ -48,6 +79,36 @@ import Layout from "../layouts/Layout.astro";
         font-weight: 500;
     }
 
+    .content-sections {
+        padding: 2rem 0;
+    }
+
+    .section {
+        min-height: 80vh;
+        padding: 4rem 2rem;
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .section h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        color: #fff;
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.2),
+            0 0 16px rgba(255, 255, 255, 0.15);
+    }
+
+    .section p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        line-height: 1.6;
+    }
+
     @media (max-width: 600px) {
         .me-title {
             font-size: 2.2rem;
@@ -64,6 +125,15 @@ import Layout from "../layouts/Layout.astro";
         .me-section {
             min-height: 60vh;
             padding: 20px 10px;
+            padding-top: 100px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+        }
+
+        .section p {
+            font-size: 1rem;
         }
     }
 </style>

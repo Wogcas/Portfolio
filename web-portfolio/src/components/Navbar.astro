@@ -1,0 +1,322 @@
+<nav class="top-nav" id="topNav">
+    <div class="nav-container">
+        <div class="sticky-menu" id="stickyMenu">
+            <div class="hamburger-lines" id="hamburgerLines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="close-icon" id="closeIcon" style="display: none;">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="left-icon-area">
+            <p>Wogcas <span>Portfolio</span></p>
+        </div>
+        <div class="center-btn-area">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-bottom-contact">
+            <div class="nav-phone-number">
+                <p>Contact for more information</p>
+                <a href="mailto:your-email@example.com"
+                    >your-email@example.com</a
+                >
+            </div>
+            <div class="nav-social-media">
+                <a href="https://github.com/yourusername" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:your-email@example.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .top-nav {
+        position: fixed;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow:
+            0 0 20px rgba(255, 255, 255, 0.3),
+            0 0 40px rgba(255, 255, 255, 0.1),
+            0 4px 20px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        margin: 0 20px;
+        width: calc(100% - 40px);
+    }
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.6rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        height: 48px;
+    }
+    .sticky-menu {
+        display: none;
+        cursor: pointer;
+        padding: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow:
+            0 0 20px rgba(255, 255, 255, 0.3),
+            0 0 40px rgba(255, 255, 255, 0.1),
+            0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 48px;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        z-index: 1001;
+    }
+    .sticky-menu:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: scale(1.05);
+        box-shadow:
+            0 0 25px rgba(255, 255, 255, 0.4),
+            0 0 50px rgba(255, 255, 255, 0.2),
+            0 6px 25px rgba(0, 0, 0, 0.15);
+    }
+    .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+    .hamburger-lines span {
+        width: 18px;
+        height: 2px;
+        background-color: #000;
+        border-radius: 1px;
+        transition: all 0.3s ease;
+    }
+    .close-icon {
+        position: relative;
+        width: 18px;
+        height: 18px;
+    }
+    .close-icon span {
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        background-color: #000;
+        border-radius: 1px;
+        top: 50%;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+    .close-icon span:first-child {
+        transform: translateY(-50%) rotate(45deg);
+    }
+    .close-icon span:last-child {
+        transform: translateY(-50%) rotate(-45deg);
+    }
+    .left-icon-area p {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #000;
+        text-shadow:
+            0 0 8px rgba(0, 0, 0, 0.1),
+            0 0 16px rgba(0, 0, 0, 0.05);
+    }
+    .left-icon-area span {
+        font-weight: 400;
+        opacity: 0.8;
+    }
+    .center-btn-area ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+    }
+    .center-btn-area a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+    }
+    .center-btn-area a:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+    }
+    .mobile-bottom-contact {
+        display: none;
+    }
+    .nav-phone-number p {
+        margin: 0 0 0.5rem 0;
+        color: #000;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+    .nav-phone-number a {
+        color: #000;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .nav-social-media {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .nav-social-media a {
+        color: #000;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+    .nav-social-media a:hover {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    .top-nav.collapsed {
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+        border-bottom: none;
+        border-radius: 0;
+        top: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .top-nav.collapsed .nav-container {
+        padding: 0;
+        justify-content: flex-start;
+        max-width: none;
+        height: auto;
+    }
+    .top-nav.collapsed .sticky-menu {
+        display: flex;
+    }
+    .top-nav.collapsed .left-icon-area,
+    .top-nav.collapsed .center-btn-area {
+        display: none;
+    }
+    .top-nav.menu-open {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow:
+            0 0 20px rgba(255, 255, 255, 0.3),
+            0 0 40px rgba(255, 255, 255, 0.1),
+            0 4px 20px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        top: 15px;
+        margin: 0 20px;
+        width: calc(100% - 40px);
+    }
+    .top-nav.menu-open .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.6rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 48px;
+    }
+    .top-nav.menu-open .sticky-menu {
+        display: flex;
+    }
+    .top-nav.menu-open .left-icon-area,
+    .top-nav.menu-open .center-btn-area {
+        display: block;
+    }
+    @media (max-width: 768px) {
+        .center-btn-area {
+            display: none;
+        }
+        .top-nav.menu-open .center-btn-area {
+            display: block;
+        }
+    }
+    @media (min-width: 769px) {
+        .top-nav.collapsed .center-btn-area {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const topNav = document.getElementById("topNav");
+        const stickyMenu = document.getElementById("stickyMenu");
+        const hamburgerLines = document.getElementById("hamburgerLines");
+        const closeIcon = document.getElementById("closeIcon");
+        let lastScrollTop = 0;
+        let isMenuOpen = false;
+
+        function handleScroll() {
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
+            if (isMenuOpen) {
+                return;
+            }
+            if (scrollTop > 100 && scrollTop > lastScrollTop) {
+                topNav?.classList.add("collapsed");
+            } else if (scrollTop < 50) {
+                topNav?.classList.remove("collapsed");
+            }
+            lastScrollTop = scrollTop;
+        }
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                if (hamburgerLines) hamburgerLines.style.display = "none";
+                if (closeIcon) closeIcon.style.display = "block";
+                topNav?.classList.remove("collapsed");
+                topNav?.classList.add("menu-open");
+            } else {
+                if (hamburgerLines) hamburgerLines.style.display = "flex";
+                if (closeIcon) closeIcon.style.display = "none";
+                topNav?.classList.remove("menu-open");
+                const scrollTop =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 100) {
+                    topNav?.classList.add("collapsed");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        stickyMenu?.addEventListener("click", toggleMenu);
+
+        const navLinks = document.querySelectorAll(".center-btn-area a");
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                if (isMenuOpen) {
+                    toggleMenu();
+                }
+            });
+        });
+    });
+</script>
