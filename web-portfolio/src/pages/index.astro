@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="home">
+    <div class="me-section">
+        <h3 class="intro-text">Hello I'm</h3>
+        <h1 class="me-title">Wogcas</h1>
+        <h1 class="me-role">Full-Stack Web Developer</h1>
+    </div>
+</Layout>
+
+<style>
+    .me-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+    }
+
+    .intro-text,
+    .me-title,
+    .me-role {
+        color: #fff;
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.2),
+            0 0 16px rgba(255, 255, 255, 0.15);
+    }
+
+    .me-title {
+        font-size: 4.5rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .me-role {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 10px 0 0 0;
+        color: #fff;
+    }
+
+    .intro-text {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+        .me-title {
+            font-size: 2.2rem;
+        }
+
+        .me-role {
+            font-size: 1.5rem;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+        }
+
+        .me-section {
+            min-height: 60vh;
+            padding: 20px 10px;
+        }
+    }
+</style>
