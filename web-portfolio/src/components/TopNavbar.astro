@@ -3,19 +3,28 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
-<nav 
-    id="topNavbar" 
+<nav
+    id="topNavbar"
     class="fixed top-0 left-0 bg-white shadow-md rounded-3xl my-4 ml-4 navbar-white-glow transition-all duration-500 ease-in-out z-50"
     style="width: calc(100% - 2rem);"
 >
     <div class="w-full mx-0 px-0">
-        <div id="navContent" class="flex items-center justify-between h-16 px-4 transition-all duration-300 ease-in-out">
+        <div
+            id="navContent"
+            class="flex items-center justify-between h-16 px-4 transition-all duration-300 ease-in-out"
+        >
             <div class="flex-shrink-0 ml-[40px]">
-                <p id="navTitle" class="text-3xl font-bold text-black transition-all duration-300 ease-in-out">
+                <p
+                    id="navTitle"
+                    class="text-3xl font-bold text-black transition-all duration-300 ease-in-out"
+                >
                     <span>PORTFOLIO</span>
                 </p>
             </div>
-            <div id="navLinks" class="mr-[60px] transition-all duration-300 ease-in-out overflow-hidden">
+            <div
+                id="navLinks"
+                class="mr-[60px] transition-all duration-300 ease-in-out overflow-hidden"
+            >
                 <ul class="flex space-x-20 whitespace-nowrap">
                     <li>
                         <a
@@ -68,7 +77,7 @@
 
     /* Estado contraído del navbar - se contrae desde la derecha */
     .navbar-collapsed {
-        width: 280px !important; /* Ancho fijo cuando está contraído */
+        width: 70px !important; /* Ancho más pequeño cuando está contraído ya que no hay contenido visible */
     }
 
     .navbar-collapsed #navContent {
@@ -78,8 +87,12 @@
     }
 
     .navbar-collapsed #navTitle {
-        font-size: 1.5rem;
-        margin-left: 20px;
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        margin-left: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
     }
 
     .navbar-collapsed #navLinks {
@@ -91,8 +104,12 @@
         transition: all 0.3s ease-in-out;
     }
 
-    /* Transición suave para los links cuando aparecen */
+    /* Transición suave para los links y título cuando aparecen */
     #navLinks {
+        transition: all 0.3s ease-in-out;
+    }
+
+    #navTitle {
         transition: all 0.3s ease-in-out;
     }
 
@@ -113,12 +130,14 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .navbar-collapsed {
-            width: 200px !important;
+            width: 80px !important;
         }
 
         .navbar-collapsed #navTitle {
-            font-size: 1.25rem;
-            margin-left: 10px;
+            opacity: 0;
+            visibility: hidden;
+            width: 0;
+            margin-left: 0;
         }
 
         /* En móviles, mantener los links visibles pero más pequeños */
@@ -140,7 +159,13 @@
 
     @media (max-width: 480px) {
         .navbar-collapsed {
-            width: 150px !important;
+            width: 60px !important;
+        }
+
+        .navbar-collapsed #navTitle {
+            opacity: 0;
+            visibility: hidden;
+            width: 0;
         }
 
         .navbar-collapsed #navLinks {
