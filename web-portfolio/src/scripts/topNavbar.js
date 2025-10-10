@@ -77,10 +77,26 @@ class TopNavbarHandler {
             this.navbar.classList.add('navbar-manual-expanded');
         } else {
             // El usuario presionó la X para cerrar
-            this.isManuallyExpanded = false;
-            this.changeIconToHamburger();
-            this.navbar.classList.remove('navbar-manual-expanded');
-            
+            const icon = this.hamburgerIcon.querySelector('i');
+            if (icon) {
+                icon.style.transition = 'opacity 0.3s';
+                icon.style.opacity = '0';
+                setTimeout(() => {
+                    this.isManuallyExpanded = false;
+                    this.changeIconToHamburger();
+                    this.navbar.classList.remove('navbar-manual-expanded');
+                    // Mostrar la hamburguesa con opacidad 1
+                    const newIcon = this.hamburgerIcon.querySelector('i');
+                    if (newIcon) {
+                        newIcon.style.opacity = '1';
+                        newIcon.style.transition = '';
+                    }
+                }, 500);
+            } else {
+                this.isManuallyExpanded = false;
+                this.changeIconToHamburger();
+                this.navbar.classList.remove('navbar-manual-expanded');
+            }
             // Volver al comportamiento automático basado en scroll
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTop > this.scrollThreshold) {
@@ -115,10 +131,17 @@ class TopNavbarHandler {
             const icon = this.hamburgerIcon.querySelector('i');
             if (icon) {
                 icon.className = 'fas fa-bars text-gray-700 text-xl hover:text-black';
+                // Iniciar con opacity 0 para el efecto de aparición
+                icon.style.opacity = '0';
             }
             
             requestAnimationFrame(() => {
                 this.hamburgerIcon.style.transition = '';
+                // Efecto de aparición de 0.8 segundos
+                if (icon) {
+                    icon.style.transition = 'opacity 0.8s ease-in-out';
+                    icon.style.opacity = '1';
+                }
             });
         }
     }
