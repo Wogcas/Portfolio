@@ -13,6 +13,14 @@
             id="navContent"
             class="flex items-center justify-between h-16 px-4 transition-all duration-300 ease-in-out"
         >
+            <!-- Icono de hamburguesa (solo visible cuando está collapsed) -->
+            <div
+                id="hamburgerIcon"
+                class="absolute left-1/2 transform -translate-x-1/2 opacity-0 invisible transition-all duration-300 ease-in-out cursor-pointer"
+            >
+                <i class="fas fa-bars text-gray-700 text-xl hover:text-black"></i>
+            </div>
+            
             <div class="flex-shrink-0 ml-[40px]">
                 <p
                     id="navTitle"
@@ -77,13 +85,17 @@
 
     /* Estado contraído del navbar - se contrae desde la derecha */
     .navbar-collapsed {
-        width: 70px !important; /* Ancho más pequeño cuando está contraído ya que no hay contenido visible */
+        width: 60px !important; /* Ancho más pequeño cuando está contraído ya que no hay contenido visible */
     }
 
     .navbar-collapsed #navContent {
-        /* Mantener la altura original, solo cambiar padding horizontal */
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    /* Mostrar icono de hamburguesa cuando está collapsed */
+    .navbar-collapsed #hamburgerIcon {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .navbar-collapsed #navTitle {
@@ -111,6 +123,16 @@
 
     #navTitle {
         transition: all 0.3s ease-in-out;
+    }
+
+    /* Estilo del icono de hamburguesa */
+    #hamburgerIcon {
+        transition: all 0.8s ease-in-out;
+    }
+
+    #hamburgerIcon:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease-in-out;
     }
 
     /* Estados especiales de scroll */

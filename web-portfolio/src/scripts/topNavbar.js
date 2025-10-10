@@ -64,13 +64,19 @@ class TopNavbarHandler {
     }
 
     handleNavbarVisibility(scrollTop, scrollDirection) {
-        if (scrollTop > this.hideThreshold && this.isCollapsed) {
-            if (scrollDirection === 'down' && !this.isHidden) {
-                this.hideNavbar();
-            } else if (scrollDirection === 'up' && this.isHidden) {
-                this.showNavbar();
-            }
-        } else if (scrollTop <= this.hideThreshold && this.isHidden) {
+        // Comentado: No ocultar el navbar cuando está colapsado, mantenerlo siempre visible
+        // if (scrollTop > this.hideThreshold && this.isCollapsed) {
+        //     if (scrollDirection === 'down' && !this.isHidden) {
+        //         this.hideNavbar();
+        //     } else if (scrollDirection === 'up' && this.isHidden) {
+        //         this.showNavbar();
+        //     }
+        // } else if (scrollTop <= this.hideThreshold && this.isHidden) {
+        //     this.showNavbar();
+        // }
+        
+        // Mantener el navbar siempre visible cuando está colapsado
+        if (this.isHidden) {
             this.showNavbar();
         }
     }
