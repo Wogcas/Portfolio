@@ -18,9 +18,10 @@
                 id="hamburgerIcon"
                 class="absolute left-1/2 transform -translate-x-1/2 opacity-0 invisible transition-all duration-300 ease-in-out cursor-pointer"
             >
-                <i class="fas fa-bars text-gray-700 text-xl hover:text-black"></i>
+                <i class="fas fa-bars text-gray-700 text-xl hover:text-black"
+                ></i>
             </div>
-            
+
             <div class="flex-shrink-0 ml-[40px]">
                 <p
                     id="navTitle"
@@ -36,9 +37,23 @@
                 <ul class="flex space-x-20 whitespace-nowrap">
                     <li>
                         <a
+                            href="#home"
+                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            >Home</a
+                        >
+                    </li>
+                    <li>
+                        <a
                             href="#about"
                             class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >About</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#projects"
+                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            >Projects</a
                         >
                     </li>
                     <li>
@@ -50,16 +65,9 @@
                     </li>
                     <li>
                         <a
-                            href="#portfolio"
+                            href="#skills"
                             class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
-                            >Portfolio</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#education"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
-                            >Education</a
+                            >Skills</a
                         >
                     </li>
                     <li>
@@ -85,7 +93,7 @@
 
     /* Estado contraído del navbar - se contrae desde la derecha */
     .navbar-collapsed {
-        width: 60px !important; /* Ancho más pequeño cuando está contraído ya que no hay contenido visible */
+        width: 60px !important;
     }
 
     .navbar-collapsed #navContent {
@@ -96,19 +104,16 @@
     .navbar-collapsed #hamburgerIcon {
         opacity: 1 !important;
         visibility: visible !important;
-        /* Mantener el centrado original y la transición suave */
     }
 
     /* Mantener visible el icono (X) cuando está en modo manual expandido */
     .navbar-manual-expanded #hamburgerIcon {
         opacity: 1 !important;
         visibility: visible !important;
-        /* Mantener posicionamiento absoluto pero ajustado */
         position: absolute !important;
-        left: 1.5rem !important; /* Aumenté el padding de 1rem a 1.5rem */
+        left: 1.5rem !important; 
         top: 50% !important;
         transform: translateY(-50%) !important;
-        /* Deshabilitar transición para evitar animación extraña */
         transition: none !important;
     }
 
@@ -141,7 +146,9 @@
 
     /* Estilo del icono de hamburguesa */
     #hamburgerIcon {
-        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+        transition:
+            opacity 0.4s ease-in-out,
+            visibility 0.4s ease-in-out;
     }
 
     #hamburgerIcon:hover i {
@@ -158,11 +165,12 @@
         transform: translateY(0);
     }
 
-    /* Añadir padding-top al body para compensar el navbar fijo */
+    /* Padding-top al body para compensar el navbar fijo */
     :global(body) {
         padding-top: 5rem;
     }
 
+    /* TODO LO RESPONSIVE DE MOVIL SE DEJARA PARA MAS ADELANTE */
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .navbar-collapsed {

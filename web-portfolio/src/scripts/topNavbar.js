@@ -85,7 +85,6 @@ class TopNavbarHandler {
                     this.isManuallyExpanded = false;
                     this.changeIconToHamburger();
                     this.navbar.classList.remove('navbar-manual-expanded');
-                    // Mostrar la hamburguesa con opacidad 1
                     const newIcon = this.hamburgerIcon.querySelector('i');
                     if (newIcon) {
                         newIcon.style.opacity = '1';
@@ -241,7 +240,6 @@ class TopNavbarHandler {
     }
 }
 
-// Auto-inicialización y exportación global
 let topNavbarInstance = null;
 
 function initTopNavbar() {
