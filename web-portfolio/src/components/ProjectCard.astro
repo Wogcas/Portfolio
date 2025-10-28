@@ -1,9 +1,18 @@
 ---
 const { project } = Astro.props;
 const { data } = project;
+
+// Construir URL de skillicons si hay techs
+const techIcons = data.techs && data.techs.length > 0 
+    ? `https://skillicons.dev/icons?i=${data.techs.join(',')}`
+    : null;
 ---
 
-<article class="project-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col" style="background-color: #151515;">
+<article 
+    class="project-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col cursor-pointer"
+    style="background-color: #151515;"
+    data-project-slug={project.slug}
+>
     <div class="project-image-container">
         <img 
             src={data.img} 
@@ -13,16 +22,28 @@ const { data } = project;
         />
     </div>
     <div class="p-6 flex flex-col flex-grow">
-        <h3 class="text-white text-2xl font-bold mb-3">{data.title}</h3>
-        <p class="text-gray-300 text-base mb-4 leading-relaxed flex-grow">
+        <h3 class="text-white text-2xl font-bold mb-4">{data.title}</h3>
+        <p class="text-gray-300 text-base mb-6 leading-relaxed flex-grow">
             {data.description}
         </p>
+        
+        {techIcons && (
+            <div class="mb-6">
+                <img 
+                    src={techIcons} 
+                    alt="Technologies used"
+                    class="h-10"
+                />
+            </div>
+        )}
+        
         {data['git-repository'] && (
             <a 
                 href={data['git-repository']}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block text-white hover:text-gray-300 font-medium text-base transition-colors"
+                onclick="event.stopPropagation();"
                 style="padding-top: 20px;"
             >
                 View on GitHub

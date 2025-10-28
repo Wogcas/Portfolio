@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import TopNavbar from "../components/TopNavbar.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import ProjectModal from "../components/ProjectModal.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
@@ -73,6 +74,9 @@ const projects = await getCollection("projects");
         </section>
     </div>
 
+    <!-- Modales de proyectos -->
+    {projects.map((project) => <ProjectModal project={project} />)}
+
     <!-- TEST -->
     <div class="py-8">
         <section
@@ -96,6 +100,8 @@ const projects = await getCollection("projects");
         </section>
     </div>
 </Layout>
+
+<script src="../scripts/projectModal.js"></script>
 
 <style>
     .shadow-text {

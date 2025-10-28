@@ -2,7 +2,7 @@
 title: Wendys IceCream Management System
 description: This project is a web-based management system designed to streamline operations for a small ice cream shop. It provides a digital solution to replace inefficient paper-based processes, offering real-time tracking of inventory, sales, and employee data.
 img: /images/wendys-icecream.png
-techs: []
+techs: ["nodejs","js","express","sqlite","react"]
 git-repository: https://github.com/Hisamy/SistemaGestionWendysIceCream
 ---
 

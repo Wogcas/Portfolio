@@ -2,7 +2,7 @@
 title: MovieSet
 description: Movie blog web application as a final project for my Web Applications course. This project was my first formal experience with web development, where I applied the fundamentals of back-end development.
 img: /images/movieset.jpg
-techs: []
+techs: ["java","mongodb","html","css"]
 git-repository: https://github.com/Hisamy/MovieSet
 ---
 
