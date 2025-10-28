@@ -1,6 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TopNavbar from "../components/TopNavbar.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
 ---
 
 <Layout title="home">
@@ -53,9 +57,19 @@ import TopNavbar from "../components/TopNavbar.astro";
         </section>
     </div>
 
-    <div id="projects">
-        <section>
-            <h2>Projects</h2>
+    <div
+        id="projects"
+        class="min-h-screen py-16 px-8 flex flex-col justify-center items-center"
+    >
+        <section class="max-w-7xl mx-auto w-full">
+            <h2 class="text-white text-5xl mb-12 text-center shadow-text">
+                Projects
+            </h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+                {projects.map((project) => <ProjectCard project={project} />)}
+            </div>
         </section>
     </div>
 
