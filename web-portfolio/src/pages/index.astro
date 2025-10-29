@@ -4,15 +4,18 @@ import TopNavbar from "../components/TopNavbar.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import ProjectModal from "../components/ProjectModal.astro";
 import { getCollection } from "astro:content";
+import { sortProjectsByDate } from "../scripts/sortedProjects.js";
 
 const projects = await getCollection("projects");
+const sortedProjects = sortProjectsByDate(projects);
 ---
 
 <Layout title="home">
     <TopNavbar />
     <div
-        class="flex flex-col items-center justify-center min-h-screen text-center -mt-20 relative"
+        class="flex flex-col items-center justify-center min-h-[120vh] text-center -mt-20 relative"
         id="home"
+        style="z-index: 1;"
     >
         <div class="home-light"></div>
 
@@ -28,8 +31,9 @@ const projects = await getCollection("projects");
     </div>
 
     <div
-        class="flex flex-col items-center justify-center min-h-screen text-center mt-20 relative"
+        class="flex flex-col items-center justify-center min-h-screen text-center -mt-40 relative"
         id="about"
+        style="z-index: 2:;"
     >
         <section
             class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center max-w-6xl mx-auto px-8"
@@ -66,16 +70,18 @@ const projects = await getCollection("projects");
             <h2 class="text-white text-5xl mb-20 text-center shadow-text">
                 Projects
             </h2>
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-                {projects.map((project) => <ProjectCard project={project} />)}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    sortedProjects.map((project) => (
+                        <ProjectCard project={project} />
+                    ))
+                }
             </div>
         </section>
     </div>
 
     <!-- Modales de proyectos -->
-    {projects.map((project) => <ProjectModal project={project} />)}
+    {sortedProjects.map((project) => <ProjectModal project={project} />)}
 
     <!-- TEST -->
     <div class="py-8">
@@ -176,7 +182,6 @@ const projects = await getCollection("projects");
             padding-right: 10px;
         }
 
-        /* Luz más pequeña en móviles */
         .home-light {
             width: 185%;
             height: 200%;
@@ -185,22 +190,84 @@ const projects = await getCollection("projects");
     }
 </style>
 
-<!-- <script>
+<script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
+    const homeSection = document.getElementById("home");
+    const aboutSection = document.getElementById("about");
+
+    // Animación de fade out y slide up para home
+    gsap.to(homeSection, {
         scrollTrigger: {
+            trigger: aboutSection,
+            start: "top 80%", // Comienza cuando about está al 80% del viewport (más abajo)
+            end: "top 20%",
             scrub: 1,
+            //markers: true, // Descomenta para debug
         },
+        opacity: 0,
+        y: -100,
+        scale: 0.95,
+        ease: "power2.out",
     });
 
-    ScrollTrigger.create({
-        trigger: "#about",
-        start: "top top",
-        end: "+=500px",
-        pinSpacing: false,
-        pin: true,
-    });
-</script> -->
+    // Animación de fade in y slide up para about
+    gsap.fromTo(
+        aboutSection,
+        {
+            opacity: 0,
+            y: 100,
+        },
+        {
+            scrollTrigger: {
+                trigger: aboutSection,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+        },
+    );
+    // Animación para la imagen del about (aparece desde la izquierda)
+    gsap.fromTo(
+        "#about img",
+        {
+            opacity: 0,
+            x: -50,
+        },
+        {
+            scrollTrigger: {
+                trigger: aboutSection,
+                start: "top 70%",
+                end: "top 30%",
+                scrub: 1,
+            },
+            opacity: 1,
+            x: 0,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        "#about .text-left",
+        {
+            opacity: 0,
+            x: 50,
+        },
+        {
+            scrollTrigger: {
+                trigger: aboutSection,
+                start: "top 90%",
+                end: "top 30%",
+                scrub: 1,
+            },
+            opacity: 1,
+            x: 0,
+            ease: "power2.out",
+        },
+    );
+</script>

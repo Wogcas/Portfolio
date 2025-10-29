@@ -4,6 +4,9 @@ description: This project is a web-based management system designed to streamlin
 img: /images/wendys-icecream.png
 techs: ["nodejs","js","express","sqlite","react"]
 git-repository: https://github.com/Hisamy/SistemaGestionWendysIceCream
+date:
+    start: Mar 2025
+    end: May 2025
 ---
 
 I developed a management system for Wendy's IceCream, a local ice cream shop, as part of the Software Integrator project. The goal was to digitize their business operations and improve efficiency.

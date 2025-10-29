@@ -3,7 +3,10 @@ title: El Sol Agency (Database Project)
 description: In this project, we worked with Java, JPA, and MySQL to develop an advanced database project, one of the first introductions to the good architectures and large projects that were to come.
 img: /images/sol-agency.png
 techs: ["java","mysql"]
-git-repository: https://github.com/Wogcas/Schoodle
+git-repository: https://github.com/kikin27z/AgenciaDelSol
+date:
+    start: Mar 2024
+    end: Apr 2024
 ---
 
 In this project, we worked with Java, JPA, and MySQL to develop an advanced database project, one of the first introductions to the good architectures and large projects that were to come. 

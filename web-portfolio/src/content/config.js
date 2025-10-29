@@ -8,6 +8,11 @@ const projects = defineCollection({
         imageScale: z.number().optional(),
         techs: z.array(z.string()).optional(),
         'git-repository': z.string().url().optional(),
+
+        date: z.object({
+            start: z.string(),
+            end: z.string()
+        }).optional(),
     }),
 });
 

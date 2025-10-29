@@ -2,8 +2,11 @@
 title: api-moodle
 description: This is an API RESTFul proposal with academic and learning purposes, this API provides methods for other components/services to access a Moodle web service and its functions.
 img: /images/default-no-image.jpg
-techs: ["nest","ts","mysql","docker"]
+techs: ["nest","ts","nodejs","mysql","docker"]
 git-repository: https://github.com/Wogcas/api-moodle
+date:
+    start: Mar 2025
+    end: May 2025
 ---
 
 This is an API RESTFul proposal with academic and learning purposes, this API provides methods for other components/services to access a Moodle web service and its functions.
