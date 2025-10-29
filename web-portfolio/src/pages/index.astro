@@ -197,6 +197,7 @@ const sortedProjects = sortProjectsByDate(projects);
 
     const homeSection = document.getElementById("home");
     const aboutSection = document.getElementById("about");
+    const projectsSection = document.getElementById("projects");
 
     // Animación de fade out y slide up para home
     gsap.to(homeSection, {
@@ -270,4 +271,23 @@ const sortedProjects = sortProjectsByDate(projects);
             ease: "power2.out",
         },
     );
+
+    gsap.fromTo(
+        projectsSection,
+        {
+            opacity: 0,
+            y: 100,
+        },
+        {
+            scrollTrigger: {
+                trigger: projectsSection,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+        },
+    )
 </script>
