@@ -1,0 +1,42 @@
+<footer>
+    <div class="footer-light"></div>
+    <p class="align-items center justify-center items-center text-center">
+        &copy; {new Date().getFullYear()} Gael Castro. All rights reserved.
+    </p>
+</footer>
+
+<style>
+    footer {
+        position: relative;
+        padding: 2% 0 30px; 
+        margin-bottom: 0;
+        color: white;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+    }
+    
+    footer p {
+        position: relative;
+        z-index: 10;
+        margin: 0;
+    }
+
+    .footer-light {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 150px;
+        opacity: 0.8;
+        z-index: 1;
+
+        background: radial-gradient(
+            ellipse 150% 600px at 50% 100%,
+            rgba(255, 51, 0, 0.7) 0%,
+            rgba(207, 35, 0, 0.3) 25%,
+            transparent 75%
+        );
+        filter: blur(50px);
+    }
+</style>
