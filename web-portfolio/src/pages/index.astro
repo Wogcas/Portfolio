@@ -6,9 +6,14 @@ import ProjectModal from "../components/ProjectModal.astro";
 import { getCollection } from "astro:content";
 import { sortProjectsByDate } from "../scripts/sortedProjects.js";
 import Footer from "../components/Footer.astro";
+import skillsData from "../data/skills.json";
 
 const projects = await getCollection("projects");
 const sortedProjects = sortProjectsByDate(projects);
+
+const sortedSkills = skillsData.sort(
+    (a, b) => (a.order || 0) - (b.order || 0),
+);
 ---
 
 <Layout title="home">
@@ -84,26 +89,42 @@ const sortedProjects = sortProjectsByDate(projects);
     <!-- Modales de proyectos -->
     {sortedProjects.map((project) => <ProjectModal project={project} />)}
 
-    <!-- TEST -->
     <div class="py-8">
         <section
             id="experience"
             class="min-h-screen bg-red py-16 px-8 my-8 flex flex-col justify-center items-center text-center"
         >
             <h2 class="text-white text-5xl mb-8 shadow-text">Experience</h2>
-            <p class="text-white text-xl max-w-2xl leading-relaxed">
-                This is the experience section...
-            </p>
         </section>
+    </div>
 
+    <div class="py-8">
         <section
             id="skills"
             class="min-h-screen bg-red py-16 px-8 my-8 flex flex-col justify-center items-center text-center"
         >
             <h2 class="text-white text-5xl mb-8 shadow-text">Skills</h2>
-            <p class="text-white text-xl max-w-2xl leading-relaxed">
-                This is the skills section...
-            </p>
+
+            <div class="max-w-5xl w-full">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                >
+                    {
+                        sortedSkills.map((skill) => (
+                            <div class="skill-card group bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-xl p-6 hover:border-red-500/60 hover:bg-gradient-to-br hover:from-gray-900/60 hover:to-gray-800/40 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:scale-105 flex flex-col items-center justify-center gap-4">
+                                <h3 class="text-white text-lg font-medium text-center group-hover:text-red-400 transition-colors duration-300">
+                                    {skill.name}
+                                </h3>
+                                {skill.category && (
+                                    <span class="text-gray-400 text-sm">
+                                        {skill.category}
+                                    </span>
+                                )}
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </section>
 
         <section
@@ -297,12 +318,13 @@ const sortedProjects = sortProjectsByDate(projects);
     const aboutSection = document.getElementById("about");
     const projectsSection = document.getElementById("projects");
     const contactSection = document.getElementById("contact");
+    const skillsSection = document.getElementById("skills");
 
     gsap.to(homeSection, {
         scrollTrigger: {
             trigger: aboutSection,
             start: "top 80%",
-            end: "top 20%", 
+            end: "top 20%",
             scrub: 1,
         },
         opacity: 0,
@@ -321,8 +343,8 @@ const sortedProjects = sortProjectsByDate(projects);
         {
             scrollTrigger: {
                 trigger: aboutSection,
-                start: "top 80%", 
-                end: "top 20%", 
+                start: "top 80%",
+                end: "top 20%",
                 scrub: 1,
             },
             opacity: 1,
@@ -385,6 +407,69 @@ const sortedProjects = sortProjectsByDate(projects);
             },
             opacity: 1,
             y: 0,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        "#projects .grid > div",
+        {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+        },
+        {
+            scrollTrigger: {
+                trigger: projectsSection,
+                start: "top 70%",
+                end: "top 30%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        skillsSection,
+        {
+            opacity: 0,
+            y: 100,
+        },
+        {
+            scrollTrigger: {
+                trigger: skillsSection,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        "#skills .grid > div",
+        {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+        },
+        {
+            scrollTrigger: {
+                trigger: skillsSection,
+                start: "top 70%",
+                end: "top 30%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
             ease: "power2.out",
         },
     );
