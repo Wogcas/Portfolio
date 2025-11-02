@@ -11,9 +11,18 @@ import skillsData from "../data/skills.json";
 const projects = await getCollection("projects");
 const sortedProjects = sortProjectsByDate(projects);
 
-const sortedSkills = skillsData.sort(
-    (a, b) => (a.order || 0) - (b.order || 0),
-);
+const sortedSkills = skillsData.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+const categoriesMap = new Map();
+sortedSkills.forEach((skill) => {
+    const category = skill.category || "Other";
+    if (!categoriesMap.has(category)) {
+        categoriesMap.set(category, []);
+    }
+    categoriesMap.get(category).push(skill);
+});
+
+const sortedCategories = Array.from(categoriesMap.entries());
 ---
 
 <Layout title="home">
@@ -46,9 +55,9 @@ const sortedSkills = skillsData.sort(
         >
             <div class="flex justify-center pr-40 md:justify-end">
                 <img
-                    src="/images/shaw.jpg"
+                    src="/images/me/me-photo.jpeg"
                     alt="Gael Castro"
-                    class="w-max h-max object-cover shadow-lg"
+                    class="about-image w-max h-max object-cover shadow-lg"
                 />
             </div>
 
@@ -92,9 +101,89 @@ const sortedSkills = skillsData.sort(
     <div class="py-8">
         <section
             id="experience"
-            class="min-h-screen bg-red py-16 px-8 my-8 flex flex-col justify-center items-center text-center"
+            class="min-h-screen py-16 px-8 my-8 flex flex-col justify-center items-center text-center"
         >
-            <h2 class="text-white text-5xl mb-8 shadow-text">Experience</h2>
+            <h2 class="text-white text-5xl mb-12 shadow-text">Experience</h2>
+
+            <div class="max-w-4xl w-full space-y-8">
+                <div
+                    class="experience-card bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-2xl p-8 hover:border-red-500/40 transition-all duration-300"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:justify-between md:items-start mb-4"
+                    >
+                        <div class="text-left">
+                            <h3 class="text-white text-2xl font-bold mb-2">
+                                Instituto Tecnologico de Sonora (ITSON)
+                            </h3>
+                            <p class="text-red-400 text-lg font-medium">
+                                University student.
+                            </p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0"
+                            >2022 - Present</span
+                        >
+                    </div>
+                    <p class="text-gray-300 text-left leading-relaxed">
+                        A highly interested and proficient web development
+                        student, currently building strong skills in logic and
+                        creativity, with a view to developing an interest in
+                        cybersecurity in the near future.
+                    </p>
+                </div>
+
+                <div
+                    class="experience-card bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-2xl p-8 hover:border-red-500/40 transition-all duration-300"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:justify-between md:items-start mb-4"
+                    >
+                        <div class="text-left">
+                            <h3 class="text-white text-2xl font-bold mb-2">
+                                Centro de Bachillerato Tecnologico Industrial y
+                                de Servicios No. 37
+                            </h3>
+                            <p class="text-red-400 text-lg font-medium">
+                                High school student.
+                            </p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0"
+                            >2019 - 2022</span
+                        >
+                    </div>
+                    <p class="text-gray-300 text-left leading-relaxed">
+                        Entering the world of programming for the first time and
+                        laying the foundation for what it would be in the
+                        future, a first look at the web development, and a
+                        certain interest in cybersecurity.
+                    </p>
+                </div>
+
+                <div
+                    class="experience-card bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-2xl p-8 hover:border-red-500/40 transition-all duration-300"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:justify-between md:items-start mb-4"
+                    >
+                        <div class="text-left">
+                            <h3 class="text-white text-2xl font-bold mb-2">
+                                Prologue
+                            </h3>
+                            <p class="text-red-400 text-lg font-medium">
+                                Childhood.
+                            </p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0"
+                            >Beginning - May 2022</span
+                        >
+                    </div>
+                    <p class="text-gray-300 text-left leading-relaxed">
+                        Assisted in the development of web applications and
+                        mobile apps. Learned and applied modern development
+                        practices and agile methodologies.
+                    </p>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -103,27 +192,31 @@ const sortedSkills = skillsData.sort(
             id="skills"
             class="min-h-screen bg-red py-16 px-8 my-8 flex flex-col justify-center items-center text-center"
         >
-            <h2 class="text-white text-5xl mb-8 shadow-text">Skills</h2>
+            <h2 class="text-white text-5xl mb-12 shadow-text">Skills</h2>
 
-            <div class="max-w-5xl w-full">
-                <div
-                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-                >
-                    {
-                        sortedSkills.map((skill) => (
-                            <div class="skill-card group bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-xl p-6 hover:border-red-500/60 hover:bg-gradient-to-br hover:from-gray-900/60 hover:to-gray-800/40 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:scale-105 flex flex-col items-center justify-center gap-4">
-                                <h3 class="text-white text-lg font-medium text-center group-hover:text-red-400 transition-colors duration-300">
-                                    {skill.name}
+            <div class="max-w-6xl w-full space-y-12">
+                {
+                    sortedCategories.map((categoryData) => {
+                        const categoryName = categoryData[0];
+                        const categorySkills = categoryData[1];
+                        return (
+                            <div class="skill-category">
+                                <h3 class="text-white text-3xl mb-6 font-semibold shadow-text text-center">
+                                    {categoryName}
                                 </h3>
-                                {skill.category && (
-                                    <span class="text-gray-400 text-sm">
-                                        {skill.category}
-                                    </span>
-                                )}
+                                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                    {categorySkills.map((skill) => (
+                                        <div class="skill-card group bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-xl p-6 hover:border-red-500/60 hover:bg-gradient-to-br hover:from-gray-900/60 hover:to-gray-800/40 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:scale-105 flex flex-col items-center justify-center">
+                                            <h4 class="text-white text-lg font-medium text-center group-hover:text-red-400 transition-colors duration-300">
+                                                {skill.name}
+                                            </h4>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        ))
-                    }
-                </div>
+                        );
+                    })
+                }
             </div>
         </section>
 
@@ -179,7 +272,7 @@ const sortedSkills = skillsData.sort(
                         </div>
                     </a>
                     <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/wogcass_/#"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="contact-card group bg-gradient-to-br from-gray-900/40 to-gray-800/20 border border-gray-700/40 rounded-2xl p-6 hover:border-pink-500/60 hover:bg-gradient-to-br hover:from-gray-900/60 hover:to-gray-800/40 transition-all duration-300 hover:shadow-xl hover:shadow-pink-500/20 hover:scale-105"
@@ -221,6 +314,8 @@ const sortedSkills = skillsData.sort(
 
 <script src="../scripts/projectModal.js"></script>
 <script src="../scripts/contactView.js"></script>
+<script src="../scripts/aboutImageHover.js"></script>
+<script src="../scripts/smoothScroll.js"></script>
 
 <style>
     .shadow-text {
@@ -234,10 +329,51 @@ const sortedSkills = skillsData.sort(
         overflow: hidden;
     }
 
+    /* Scroll padding para compensar el navbar fijo */
+    html {
+        scroll-padding-top: 100px;
+    }
+
     .contact-icon {
         width: 50px;
         height: 50px;
         transition: transform 0.3s ease;
+    }
+
+    .about-image {
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    .skill-category {
+        padding: 2rem 0;
+    }
+
+    .skill-category:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 3rem;
+    }
+
+    .skill-category h3 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .skill-category h3::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 51, 0, 0.8),
+            transparent
+        );
+        border-radius: 2px;
     }
 
     .home-light {
@@ -317,6 +453,7 @@ const sortedSkills = skillsData.sort(
     const homeSection = document.getElementById("home");
     const aboutSection = document.getElementById("about");
     const projectsSection = document.getElementById("projects");
+    const experienceSection = document.getElementById("experience");
     const contactSection = document.getElementById("contact");
     const skillsSection = document.getElementById("skills");
 
@@ -429,6 +566,47 @@ const sortedSkills = skillsData.sort(
             y: 0,
             scale: 1,
             stagger: 0.1,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        experienceSection,
+        {
+            opacity: 0,
+            y: 100,
+        },
+        {
+            scrollTrigger: {
+                trigger: experienceSection,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+            },
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+        },
+    );
+
+    gsap.fromTo(
+        ".experience-card",
+        {
+            opacity: 0,
+            x: -50,
+            scale: 0.95,
+        },
+        {
+            scrollTrigger: {
+                trigger: experienceSection,
+                start: "top 70%",
+                end: "top 30%",
+                scrub: 1,
+            },
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            stagger: 0.15,
             ease: "power2.out",
         },
     );
