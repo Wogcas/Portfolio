@@ -344,6 +344,8 @@ const sortedCategories = Array.from(categoriesMap.entries());
     .about-image {
         transition: opacity 0.3s ease;
         cursor: pointer;
+        max-width: 300px;
+        max-height: 300px;
     }
 
     .skill-category {
@@ -408,40 +410,68 @@ const sortedCategories = Array.from(categoriesMap.entries());
         }
     }
 
-    @media (max-width: 600px) {
-        .text-7xl {
-            font-size: 2.2rem;
-        }
-
-        .text-6xl {
+    @media (max-width: 768px) {
+        /* Texto más grande en la sección home para móvil */
+        #home .text-xl {
             font-size: 1.5rem;
         }
 
-        .text-xl {
-            font-size: 1rem;
+        #home .text-7xl {
+            font-size: 3rem;
         }
 
-        .min-h-screen {
-            min-height: 60vh;
+        #home .text-6xl {
+            font-size: 2.25rem;
         }
 
-        .pt-20 {
-            padding-top: 100px;
+        /* Centrar imagen de About en móvil */
+        #about .flex.justify-center {
+            padding-right: 0 !important;
+            justify-content: center !important;
         }
 
+        /* Otros ajustes para móvil */
         .text-5xl {
             font-size: 2rem;
         }
 
         .px-8 {
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
         .home-light {
             width: 185%;
             height: 200%;
             filter: blur(20px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        /* Texto aún más grande en la sección home para pantallas pequeñas */
+        #home .text-xl {
+            font-size: 1.25rem;
+        }
+
+        #home .text-7xl {
+            font-size: 2.5rem;
+        }
+
+        #home .text-6xl {
+            font-size: 1.75rem;
+        }
+
+        .min-h-screen {
+            min-height: 60vh;
+        }
+
+        .text-5xl {
+            font-size: 1.75rem;
+        }
+
+        .px-8 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
         }
     }
 </style>

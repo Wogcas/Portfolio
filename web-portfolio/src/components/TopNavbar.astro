@@ -38,47 +38,98 @@
                     <li>
                         <a
                             href="#home"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >Home</a
                         >
                     </li>
                     <li>
                         <a
                             href="#about"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >About</a
                         >
                     </li>
                     <li>
                         <a
                             href="#projects"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >Projects</a
                         >
                     </li>
                     <li>
                         <a
                             href="#experience"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >Experience</a
                         >
                     </li>
                     <li>
                         <a
                             href="#skills"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >Skills</a
                         >
                     </li>
                     <li>
                         <a
                             href="#contact"
-                            class="text-gray-700 hover:text-black font-medium transition-colors duration-200"
+                            class="nav-link text-gray-700 hover:text-black font-medium transition-colors duration-200"
                             >Contact</a
                         >
                     </li>
                 </ul>
             </div>
+        </div>
+        
+        <!-- Menú móvil desplegable -->
+        <div
+            id="mobileMenu"
+            class="mobile-menu hidden overflow-hidden transition-all duration-300 ease-in-out"
+        >
+            <ul class="flex flex-col py-4 space-y-2">
+                <li>
+                    <a
+                        href="#home"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >Home</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#about"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >About</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#projects"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >Projects</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#experience"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >Experience</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#skills"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >Skills</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        class="mobile-link block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-black font-medium transition-colors duration-200"
+                        >Contact</a
+                    >
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -169,52 +220,83 @@
         padding-top: 5rem;
     }
 
-    /* TODO LO RESPONSIVE DE MOVIL SE DEJARA PARA MAS ADELANTE */
-    /* Responsive adjustments */
+    /* Menú móvil */
+    .mobile-menu {
+        max-height: 0;
+        opacity: 0;
+    }
+
+    .mobile-menu.show {
+        max-height: 400px;
+        opacity: 1;
+    }
+
+    /* Responsive para móvil */
     @media (max-width: 768px) {
+        nav {
+            margin: 0.5rem;
+            width: calc(100% - 1rem) !important;
+            border-radius: 1rem;
+        }
+
+        #navContent {
+            height: 3.5rem;
+            padding: 0 1rem;
+        }
+
+        #navTitle {
+            font-size: 1.5rem;
+            margin-left: 0 !important;
+        }
+
+        /* Ocultar los links del desktop en móvil */
+        #navLinks {
+            display: none !important;
+        }
+
+        /* Mostrar el icono hamburguesa siempre en móvil */
+        #hamburgerIcon {
+            opacity: 1 !important;
+            visibility: visible !important;
+            position: absolute;
+            right: 1rem;
+            left: auto !important;
+            transform: none !important;
+        }
+
+        /* Ajustar el menú móvil */
+        .mobile-menu {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-link {
+            text-align: center;
+        }
+
+        /* Deshabilitar el comportamiento de colapso en móvil */
         .navbar-collapsed {
-            width: 80px !important;
+            width: calc(100% - 1rem) !important;
         }
 
         .navbar-collapsed #navTitle {
-            opacity: 0;
-            visibility: hidden;
-            width: 0;
-            margin-left: 0;
+            opacity: 1 !important;
+            visibility: visible !important;
+            width: auto !important;
         }
 
-        /* En móviles, mantener los links visibles pero más pequeños */
-        .navbar-collapsed #navLinks {
-            opacity: 1;
-            visibility: visible;
-            width: auto;
-            margin-right: 10px;
-        }
-
-        .navbar-collapsed #navLinks ul {
-            gap: 0.5rem;
-        }
-
-        .navbar-collapsed #navLinks ul li a {
-            font-size: 0.75rem;
+        .navbar-collapsed #hamburgerIcon {
+            opacity: 1 !important;
+            visibility: visible !important;
         }
     }
 
     @media (max-width: 480px) {
-        .navbar-collapsed {
-            width: 60px !important;
+        #navTitle {
+            font-size: 1.25rem;
         }
 
-        .navbar-collapsed #navTitle {
-            opacity: 0;
-            visibility: hidden;
-            width: 0;
-        }
-
-        .navbar-collapsed #navLinks {
-            opacity: 0;
-            visibility: hidden;
-            width: 0;
+        #hamburgerIcon i {
+            font-size: 1.25rem;
         }
     }
 </style>

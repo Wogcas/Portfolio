@@ -2,6 +2,8 @@ class TopNavbarHandler {
     constructor() {
         this.navbar = document.getElementById('topNavbar');
         this.hamburgerIcon = null;
+        this.mobileMenu = null;
+        this.isMobileMenuOpen = false;
         this.lastScrollTop = 0;
         this.scrollThreshold = 100;
         this.hideThreshold = 200;
@@ -9,6 +11,7 @@ class TopNavbarHandler {
         this.isHidden = false;
         this.isManuallyExpanded = false; 
         this.ticking = false;
+        this.isMobile = false;
         
         if (this.navbar) {
             this.init();
@@ -19,12 +22,26 @@ class TopNavbarHandler {
 
     init() {
         this.hamburgerIcon = document.getElementById('hamburgerIcon');
+        this.mobileMenu = document.getElementById('mobileMenu');
+        this.isMobile = window.innerWidth <= 768;
         
         window.addEventListener('scroll', this.throttleScroll.bind(this));
         window.addEventListener('resize', this.handleResize.bind(this));
         
         if (this.hamburgerIcon) {
             this.hamburgerIcon.addEventListener('click', this.toggleNavbar.bind(this));
+        }
+        
+        // Agregar event listeners a los links móviles
+        if (this.mobileMenu) {
+            const mobileLinks = this.mobileMenu.querySelectorAll('.mobile-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (this.isMobile && this.isMobileMenuOpen) {
+                        this.closeMobileMenu();
+                    }
+                });
+            });
         }
         
         this.handleScroll();
@@ -69,6 +86,17 @@ class TopNavbarHandler {
     }
 
     toggleNavbar() {
+        // En móvil, controlar el menú móvil
+        if (this.isMobile) {
+            if (this.isMobileMenuOpen) {
+                this.closeMobileMenu();
+            } else {
+                this.openMobileMenu();
+            }
+            return;
+        }
+
+        // Comportamiento desktop original
         if (this.isCollapsed) {
             // Expandir manualmente
             this.expandNavbar();
@@ -101,6 +129,26 @@ class TopNavbarHandler {
             if (scrollTop > this.scrollThreshold) {
                 this.collapseNavbar();
             }
+        }
+    }
+
+    openMobileMenu() {
+        if (this.mobileMenu) {
+            this.mobileMenu.classList.remove('hidden');
+            this.mobileMenu.classList.add('show');
+            this.isMobileMenuOpen = true;
+            this.changeIconToX();
+        }
+    }
+
+    closeMobileMenu() {
+        if (this.mobileMenu) {
+            this.mobileMenu.classList.remove('show');
+            setTimeout(() => {
+                this.mobileMenu.classList.add('hidden');
+            }, 300);
+            this.isMobileMenuOpen = false;
+            this.changeIconToHamburger();
         }
     }
 
@@ -153,12 +201,22 @@ class TopNavbarHandler {
     }
 
     handleResize() {
-        if (window.innerWidth < 768) {
+        const wasMobile = this.isMobile;
+        this.isMobile = window.innerWidth <= 768;
+
+        // Si cambió de desktop a móvil
+        if (!wasMobile && this.isMobile) {
+            this.closeMobileMenu();
             this.isManuallyExpanded = false;
             this.expandNavbar();
             this.showNavbar();
             this.changeIconToHamburger();
             this.navbar.classList.remove('navbar-manual-expanded');
+        }
+        
+        // Si cambió de móvil a desktop
+        if (wasMobile && !this.isMobile) {
+            this.closeMobileMenu();
         }
     }
 
