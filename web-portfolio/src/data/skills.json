@@ -30,6 +30,11 @@
         "order": 1
     },
     {
+        "name": "Python",
+        "category": "Backend",
+        "order": 1
+    },
+    {
         "name": "Angular",
         "category": "Frontend",
         "order": 2
@@ -135,6 +140,11 @@
         "order": 4
     },
     {
+        "name": "InfluxDB",
+        "category": "Databases",
+        "order": 4
+    },
+    {
         "name": "gRPC",
         "category": "Protocols",
         "order": 6
@@ -146,6 +156,11 @@
     },
     {
         "name": "RabbitMQ",
+        "category": "Protocols",
+        "order": 6
+    },
+    {
+        "name": "MQTT",
         "category": "Protocols",
         "order": 6
     },
