@@ -14,10 +14,30 @@ const techIcons =
     id={`modal-${project.slug}`}
     style="display: none;"
 >
-    <div
-        class="modal-content bg-[#151515] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
-    >
-        <div class="p-8">
+    <div class="relative max-w-4xl w-full max-h-[90vh]">
+        <div
+            class="modal-content bg-[#151515] rounded-lg w-full max-h-[90vh] overflow-y-auto"
+        >
+            <div class="p-8 pt-16 relative">
+            <!-- Botón de cerrar -->
+            <button
+                class="close-modal-btn absolute top-4 left-4 z-20 text-white hover:text-gray-300 transition-all duration-200"
+                aria-label="Cerrar modal"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-10 h-10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
             <img
                 src={data.img}
                 alt={data.title}
@@ -60,6 +80,7 @@ const techIcons =
                     </a>
                 )
             }
+            </div>
         </div>
     </div>
 </div>
@@ -78,6 +99,14 @@ const techIcons =
             transform: translateY(0);
             opacity: 1;
         }
+    }
+
+    .close-modal-btn:hover {
+        transform: translateX(-4px);
+    }
+
+    .close-modal-btn:active {
+        transform: translateX(-2px);
     }
 
     .prose :global(p) {
